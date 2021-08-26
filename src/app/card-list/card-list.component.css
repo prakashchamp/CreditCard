@@ -1,0 +1,46 @@
+.card-list-container {
+  height: 30rem;
+  min-width: 280px;
+  width: 40vw;
+  margin-top: 1rem;
+}
+
+.card-list-heading {
+  background-color: rgb(165, 145, 67);
+  width: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.card-list-items {
+  height: 28rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.card-list-individual {
+  margin: 10px 5px;
+}
+
+.card-list-name {
+  margin-bottom: 5px;
+}
+
+.card-list-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  background-color: rgb(204, 211, 100);
+  margin: 0.9rem auto;
+}
+
+.card-list-row a {
+  padding: 10px 20px;
+}
+.card-list-row button {
+  height: 4rem;
+}
+.card-list-row a:hover {
+  background-color: rgb(165, 145, 67);
+}

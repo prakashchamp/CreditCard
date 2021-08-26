@@ -1,0 +1,24 @@
+<div class="card-list-container">
+  <h3 class="card-list-heading">Saved Credit Cards</h3>
+  <div class="card-list-items">
+    <mat-nav-list>
+      <div mat-list-item *ngFor="let card of creditCards" class="card-list-row">
+        <a class="card-list-individual" routerLink="/card-info/{{ card.id }}">
+          <div>
+            <div class="card-list-name">{{ card.cardHolderName }}</div>
+            <div class="card-list-number">{{ card.cardNumber }}</div>
+          </div>
+        </a>
+        <button
+          type="submit"
+          mat-flat-button
+          color="primary"
+          style="width: auto;"
+          (click)="delete(card.id)"
+        >
+          Delete Card
+        </button>
+      </div>
+    </mat-nav-list>
+  </div>
+</div>

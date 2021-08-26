@@ -1,0 +1,120 @@
+<form [formGroup]="creditCardForm" (ngSubmit)="onSubmit()" class="card-form">
+  <h3 class="card-form-heading">Credit Card Details</h3>
+  <mat-form-field appearance="outline">
+    <mat-label>Credit Card Number</mat-label>
+    <input
+      matInput
+      inputmode="numeric"
+      type="text"
+      required
+      formControlName="cardNumber"
+      maxlength="19"
+    />
+    <mat-error
+      *ngIf="
+        creditCardForm.get('cardNumber').hasError('required') &&
+        !creditCardForm.get('cardNumber').untouched
+      "
+    >
+      Credit Card number is required
+    </mat-error>
+    <mat-error
+      *ngIf="
+        creditCardForm.get('cardNumber').hasError('minlength') &&
+        !creditCardForm.get('cardNumber').untouched
+      "
+    >
+      Credit Card number should contain 16 digits
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Card Holder Name</mat-label>
+    <input matInput type="text" required formControlName="cardHolderName" />
+    <mat-error
+      *ngIf="creditCardForm.get('cardHolderName').hasError('required')"
+    >
+      Card Holder name is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>CVV</mat-label>
+    <input
+      matInput
+      required
+      type="text"
+      minlength="3"
+      maxlength="3"
+      formControlName="cvv"
+    />
+    <mat-error *ngIf="creditCardForm.get('cvv').hasError('required')">
+      CVV is required
+    </mat-error>
+    <mat-error
+      *ngIf="
+        creditCardForm.get('cvv').hasError('minlength') &&
+        !creditCardForm.get('cvv').hasError('required')
+      "
+    >
+      CVV should be 3 digits
+    </mat-error>
+  </mat-form-field>
+
+  <div formGroupName="cardValidity" class="card-validity">
+    <mat-label class="card-validity-label">
+      Card Validity
+    </mat-label>
+    <mat-form-field appearance="outline" class="card-validity-field">
+      <mat-label>Month</mat-label>
+      <mat-select formControlName="month" required>
+        <mat-option *ngFor="let monthObj of months" [value]="monthObj.value">
+          {{ monthObj.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          creditCardForm.get('cardValidity').get('month').hasError('required')
+        "
+      >
+        Month value is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="card-validity-field">
+      <mat-label>Year</mat-label>
+      <mat-select formControlName="year" required>
+        <mat-option *ngFor="let yearObj of years" [value]="yearObj.value">
+          {{ yearObj.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          creditCardForm.get('cardValidity').get('year').hasError('required')
+        "
+      >
+        Year value is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <button
+    *ngIf="!disableInput"
+    type="submit"
+    [disabled]="!disableBtn"
+    mat-flat-button
+    color="primary"
+    class="card-submit-btn"
+  >
+    Save Card
+  </button>
+  <button
+    *ngIf="disableInput"
+    type="submit"
+    [disabled]="!disableBtn"
+    mat-flat-button
+    color="primary"
+  >
+    Update Card
+  </button>
+</form>
